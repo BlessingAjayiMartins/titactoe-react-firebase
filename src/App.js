@@ -49,9 +49,6 @@ class Board extends React.Component {
 
   playerMove = (squares, position, player) => {
     squares[position] = player;
-    // this.state.trackPlayer.push(this.currentPlayer());
-    // this.state.squaresFilled.push(position)
-    // console.log("before", this.state)
     this.setState({
       squaresFilled: this.state.squaresFilled.concat([position]),
       squares: squares,
@@ -62,7 +59,7 @@ class Board extends React.Component {
       this.calculateWinner(player);
       this.computerMove(squares, this.currentPlayer())
     })
-    // console.log("after", this.state)
+    
   }
 
   playerClick = (position) => {
@@ -127,21 +124,15 @@ class Board extends React.Component {
     const {squaresFilled} = this.state
     let possibleMoves = [0,1,2,3,4,5,6,7,8]
     let possibleMovesLeft = possibleMoves.filter(x => !squaresFilled.includes(x))
-    // console.log(possibleMovesLeft)
     let index = Math.floor(Math.random() * possibleMovesLeft.length)
     return possibleMovesLeft[index]
-    // let computerPosition = possibleMovesLeft[index]
-    // this.playerMove(squares, computerPosition, this.currentPlayer())
+    
   }
 
   computerMove = (squares, player) => {
-    // const {squares} = this.state
     console.log(this.state.squaresFilled)
     let computerMove = this.computerPlayer()
     squares[computerMove] = player
-    // const updateSquare = [computerMove]
-    
-    // this.state.squaresFilled.push(computerMove)
 
     this.setState({
       squares: squares,
