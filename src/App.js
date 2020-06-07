@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import styled from 'styled-components'
 
 const initState = {
   squares: Array(9).fill(undefined),
@@ -72,19 +73,19 @@ class Board extends React.Component {
 
   renderSquare = (position) => {
     return (
-      <div className='squares' onClick={() => this.playerClick(position)}>
+      <div className='squares' data-cy={position} onClick={() => this.playerClick(position)}>
         {this.state.squares[position]} 
       </div>
     )
   }
 
-  currentPlayer = () => this.state.xIsNext ? 'X' : 'O'
+  currentPlayer = () => this.state.xIsNext ? '😭' : '😈'
 
   renderMessaging = () => {
     if (this.state.gameOver) {
       return <div>{this.state.winner + ' is the Winner!'}</div>
     } else {
-      return <div>{'Next Player: ' + this.currentPlayer()}</div>
+      return <div>{'You: 😭   Computer: 😈'}</div>
     }
   }
 
@@ -92,11 +93,13 @@ class Board extends React.Component {
     return [0,3,6].map((value) => {
       
       return (
-        <div className='row'>
+        <>
+        <div className='row justify-content-center'>
           {this.renderSquare(value)}
           {this.renderSquare(value + 1)}
           {this.renderSquare(value + 2)}
         </div>
+        </>
       )
     })
   }
@@ -146,11 +149,25 @@ class Board extends React.Component {
   render() {
 
     return (
-      <div className='row-1 d-flex justify-content-center Game'>
+      <div className='container container-fluid'>
+        <Title>
+          TicTacToe Emojizzz
+        </Title>
+        <div className='card'>
+          <GameHeader className='card-header'>
+              {this.renderMessaging()}
+          </GameHeader>
+          <BoardGame className='card-body'>
+            {this.renderBoard()} 
+          </BoardGame>
+        </div>
+
+        
+      
+      {/* <div className='row-1 d-flex justify-content-center Game'>
+        
         <div className="col-7">  
-          <div className='status'>
-            {this.renderMessaging()}
-          </div>
+          
           <table className="tabletext">
             <tr>
               <th>Player</th>
@@ -170,12 +187,30 @@ class Board extends React.Component {
             </tr>
           </table>
         </div>
-          <div className='Board'>
-            {this.renderBoard()} 
-          </div>
+      </div> */}
+      <div className='footer'>
+      </div>
       </div>
     )
   }
 }
 
+const BoardGame = styled.div`
+width: 100%;
+padding: 0;
+background-color: black;
+`
+
+const GameHeader = styled.div`
+font-size: 3rem;
+font-weight: bold;
+display: flex;
+justify-content: center;
+`
+const Title = styled.div`
+font-size: 8rem;
+font-weight: bold;
+display: flex;
+justify-content: center;
+`
 export default Board;
