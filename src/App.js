@@ -151,7 +151,10 @@ class Board extends React.Component {
     return (
       <div className='container container-fluid'>
         <Title>
-          TicTacToe Emojizzz
+          TicTacToe
+        </Title>
+        <Title>
+          Emojizzz
         </Title>
         <div className='card'>
           <GameHeader className='card-header'>
@@ -161,39 +164,12 @@ class Board extends React.Component {
             {this.renderBoard()} 
           </BoardGame>
         </div>
-
         
-      
-      {/* <div className='row-1 d-flex justify-content-center Game'>
-        
-        <div className="col-7">  
-          
-          <table className="tabletext">
-            <tr>
-              <th>Player</th>
-              <th>Move</th>
-            </tr>
-            <tr>
-              <td>
-                <div>
-                  {this.playerHistory()}
-                </div>
-              </td>
-              <td>
-                <div>
-                  {this.renderTable()}
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div> */}
-      <div className='footer'>
-      </div>
       </div>
     )
   }
 }
+
 
 const BoardGame = styled.div`
 width: 100%;
