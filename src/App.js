@@ -69,14 +69,32 @@ class Board extends React.Component {
     if (isSquareEmpty && (this.state.gameOver === false)) { 
       this.playerMove(squares, position, this.currentPlayer())
     }
+    if (this.state.gameOver) {
+      this.clearBoard()
+    }
+  }
+
+  clearBoard = () => {
+    this.setState({
+      squares: Array(9).fill(undefined),
+      xIsNext: true,
+      gameOver: false,
+      squaresFilled: [],  
+      trackPlayer: [],
+    })
   }
 
   renderSquare = (position) => {
-    return (
-      <div className='squares' data-cy={position} onClick={() => this.playerClick(position)}>
+      return (
+        <div 
+        className='squares' 
+        data-cy={position} 
+        onClick={() => this.playerClick(position)}
+        >
         {this.state.squares[position]} 
-      </div>
-    )
+        </div>
+      )
+    
   }
 
   currentPlayer = () => this.state.xIsNext ? '😭' : '😈'
