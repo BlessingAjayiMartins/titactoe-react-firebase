@@ -168,12 +168,12 @@ class Board extends React.Component {
 
     return (
       <div className='container container-fluid'>
-        <Title>
-          TicTacToe
-        </Title>
-        <Title>
+        <Title0>
+          TicTacToe 
+        </Title0>
+        <Title1>
           Emojizzz
-        </Title>
+        </Title1>
         <div className='card'>
           <GameHeader className='card-header'>
               {this.renderMessaging()}
@@ -183,6 +183,32 @@ class Board extends React.Component {
           </BoardGame>
         </div>
         
+        <Tally className='fixed-bottom'>
+          <Table>
+            <tr>
+              <th>
+                😭
+              </th>
+              <th>
+                Tie
+              </th>
+              <th>
+                😈
+              </th>
+            </tr>
+            <tr>
+              <td>
+                0
+              </td>
+              <td>
+                0
+              </td>
+              <td>
+                0
+              </td>
+            </tr>
+          </Table>
+        </Tally>
       </div>
     )
   }
@@ -194,17 +220,35 @@ width: 100%;
 padding: 0;
 background-color: black;
 `
+const Tally = styled.div`
+font-size: 3rem;
+font-weight: bold;
+display: flex;
+justify-content: center;
+`
+const Table = styled.table`
+width: 100%;
+padding: 0;
 
+
+`
 const GameHeader = styled.div`
 font-size: 3rem;
 font-weight: bold;
 display: flex;
 justify-content: center;
 `
-const Title = styled.div`
+const Title0 = styled.div`
 font-size: 8rem;
 font-weight: bold;
 display: flex;
 justify-content: center;
+`
+const Title1 = styled.div`
+font-size: 8rem;
+font-weight: bold;
+display: flex;
+justify-content: center;
+padding-bottom: 3rem;
 `
 export default Board;
