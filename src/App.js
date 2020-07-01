@@ -7,7 +7,10 @@ const initState = {
   xIsNext: true,
   gameOver: false,
   squaresFilled: [],  
-  trackPlayer: []
+  trackPlayer: [],
+  p1: 0,
+  p2: 0,
+  tie: 0
 }
 
 class Board extends React.Component {
@@ -44,6 +47,13 @@ class Board extends React.Component {
       console.log(totalWinningPosition,winnerLine.length)
       if (totalWinningPosition === winnerLine.length) {
         this.setState({ gameOver: true, winner: player })
+        // console.log(this.state.winner)
+        // if (this.state.winner === '😭') {
+        //   // console.log('true')
+        //   this.setState({p1:this.state.p1 + 1})
+        // } else if (this.state.winner === '😈') {
+        //   this.setState({p2: this.state.p2 + 1})
+        // } 
       }    
     }
   }
@@ -69,7 +79,19 @@ class Board extends React.Component {
     if (isSquareEmpty && (this.state.gameOver === false)) { 
       this.playerMove(squares, position, this.currentPlayer())
     }
-    if (this.state.gameOver) {
+    if (this.state.gameOver && this.state.winner === '😭' ) {
+      this.setState({p1:this.state.p1 + 1})
+      this.clearBoard()
+    }
+    if (this.state.gameOver && this.state.winner === '😈' ) {
+      this.setState({p2:this.state.p2 + 1})
+      this.clearBoard()
+    }
+    if (this.state.squaresFilled.length === 10) {
+      this.clearBoard()
+    } 
+    if (this.state.squaresFilled.length === 10 && this.state.gameOver === false) {
+      this.setState({tie: this.state.tie + 1})
       this.clearBoard()
     }
   }
@@ -198,13 +220,13 @@ class Board extends React.Component {
             </tr>
             <tr>
               <td>
-                0
+                {this.state.p1}
               </td>
               <td>
-                0
+                {this.state.tie}
               </td>
               <td>
-                0
+              {this.state.p2}
               </td>
             </tr>
           </Table>
