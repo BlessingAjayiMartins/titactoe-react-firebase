@@ -47,13 +47,7 @@ class Board extends React.Component {
       console.log(totalWinningPosition,winnerLine.length)
       if (totalWinningPosition === winnerLine.length) {
         this.setState({ gameOver: true, winner: player })
-        // console.log(this.state.winner)
-        // if (this.state.winner === '😭') {
-        //   // console.log('true')
-        //   this.setState({p1:this.state.p1 + 1})
-        // } else if (this.state.winner === '😈') {
-        //   this.setState({p2: this.state.p2 + 1})
-        // } 
+        
       }    
     }
   }
