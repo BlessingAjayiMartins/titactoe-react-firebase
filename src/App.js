@@ -128,11 +128,11 @@ class Board extends React.Component {
       
       return (
         <>
-        <div className='row justify-content-center'>
+        <SqRow className='col-4 justify-content-center' >
           {this.renderSquare(value)}
           {this.renderSquare(value + 1)}
           {this.renderSquare(value + 2)}
-        </div>
+        </SqRow>
         </>
       )
     })
@@ -183,7 +183,7 @@ class Board extends React.Component {
   render() {
 
     return (
-      <div className='container container-fluid'>
+      <div className='container-fluid'>
         <Title0>
           TicTacToe 
         </Title0>
@@ -194,42 +194,46 @@ class Board extends React.Component {
           <GameHeader className='card-header'>
               {this.renderMessaging()}
           </GameHeader>
-          <BoardGame className='card-body'>
+          <BoardGame className='row card-body'>
             {this.renderBoard()} 
           </BoardGame>
+          <Tally className='card-footer'>
+            <Table>
+              <tr>
+                <th>
+                  😭
+                </th>
+                <th>
+                  Tie
+                </th>
+                <th>
+                  😈
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  {this.state.p1}
+                </td>
+                <td>
+                  {this.state.tie}
+                </td>
+                <td>
+                {this.state.p2}
+                </td>
+              </tr>
+            </Table>
+          </Tally>
         </div>
         
-        <Tally className='fixed-bottom'>
-          <Table>
-            <tr>
-              <th>
-                😭
-              </th>
-              <th>
-                Tie
-              </th>
-              <th>
-                😈
-              </th>
-            </tr>
-            <tr>
-              <td>
-                {this.state.p1}
-              </td>
-              <td>
-                {this.state.tie}
-              </td>
-              <td>
-              {this.state.p2}
-              </td>
-            </tr>
-          </Table>
-        </Tally>
+        
       </div>
     )
   }
 }
 
+const SqRow = styled.div`
+padding: 0;
+`
 
 const BoardGame = styled.div`
 width: 100%;
@@ -268,3 +272,4 @@ justify-content: center;
 padding-bottom: 3rem;
 `
 export default Board;
+ 
