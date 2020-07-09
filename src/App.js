@@ -241,6 +241,7 @@ padding: 0;
 const BoardGame = styled.div`
 width: 100%;
 padding: 0;
+margin: 0;
 background-color: black;
 `
 const Tally = styled.div`
