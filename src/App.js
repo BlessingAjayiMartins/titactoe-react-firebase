@@ -47,9 +47,11 @@ class Board extends React.Component {
       console.log(totalWinningPosition,winnerLine.length)
       if (totalWinningPosition === winnerLine.length) {
         this.setState({ gameOver: true, winner: player })
+        return true
         
       }    
     }
+    return false;
   }
 
   playerMove = (squares, position, player) => {
@@ -61,7 +63,7 @@ class Board extends React.Component {
       xIsNext: !this.state.xIsNext,
       
     }, () => {
-      this.calculateWinner(player);
+      if (this.calculateWinner(player)) return
       this.computerMove(squares, this.currentPlayer())
     })
     
@@ -170,13 +172,14 @@ class Board extends React.Component {
     console.log(this.state.squaresFilled)
     let computerMove = this.computerPlayer()
     squares[computerMove] = player
+    if (this.calculateWinner(player)) return
 
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
       trackPlayer: this.state.trackPlayer,
       squaresFilled: this.state.squaresFilled.concat([computerMove]),
-    }, () => this.calculateWinner(player))
+    })
     this.state.trackPlayer.push(this.currentPlayer());
   }
 
